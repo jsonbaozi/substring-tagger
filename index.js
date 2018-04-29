@@ -14,16 +14,20 @@ for (const tag in tags) {
 }
 AhoCorasick.add_suffix_links(trie);
 
-input.forEach(string => {
-  let map = {};
-  AhoCorasick.search(string, trie, (found_word, tag) => {
-    map[found_word] = tag;
-  });
+const replaceAll = function(str, map, cb = console.log) {
   const keys = Object.keys(map);
   if (keys.length > 0) {
     const re = new RegExp(keys.join('|'), 'gi');
-    console.log(string.replace(re, word => `TAG{${map[word]},${word}}`));
+    console.log(str.replace(re, word => `TAG{${map[word]},${word}}`));
   } else {
-    console.log(string);
+    console.log(str);
   }
+};
+
+input.forEach(string => {
+  const map = {};
+  AhoCorasick.search(string, trie, (found_word, tag) => {
+    map[found_word] = tag;
+  });
+  replaceAll(string, map);
 });
