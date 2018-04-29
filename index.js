@@ -18,9 +18,9 @@ const replaceAll = function(str, map, cb = console.log) {
   const keys = Object.keys(map);
   if (keys.length > 0) {
     const re = new RegExp(keys.join('|'), 'gi');
-    console.log(str.replace(re, word => `TAG{${map[word]},${word}}`));
+    cb(str.replace(re, word => `TAG{${map[word]},${word}}`));
   } else {
-    console.log(str);
+    cb(str);
   }
 };
 
