@@ -1,0 +1,13 @@
+{
+  "name": "substring-tagger",
+  "version": "1.0.0",
+  "description": "substring tagger on large document stores",
+  "main": "index.js",
+  "scripts": {},
+  "author": "jsonbao",
+  "license": "ISC",
+  "dependencies": {
+    "aho-corasick.js": "0.0.1",
+    "fs": "0.0.1-security"
+  }
+}
