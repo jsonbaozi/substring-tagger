@@ -1,33 +1,27 @@
-const fs = require('fs');
+const Promise = require('bluebird');
+const fs = Promise.promisifyAll(require('fs'));
 const AhoCorasick = require('aho-corasick.js');
 
-const trie = new AhoCorasick.TrieNode();
+const createTrie = require('./helpers/createTrie.js');
+const createTaggedFile = require('./helpers/createTaggedFile.js');
 
-const tags = require('./data/tags.js');
-const input = require('./data/input.js');
+const trie = createTrie(require('./data/tags.js'));
 
-for (const tag in tags) {
-  const substrings = tags[tag];
-  for (const substring of substrings) {
-    trie.add(substring, tag);
-  }
-}
-AhoCorasick.add_suffix_links(trie);
-
-const replaceAll = function(str, map, cb = console.log) {
-  const keys = Object.keys(map);
-  if (keys.length > 0) {
-    const re = new RegExp(keys.join('|'), 'gi');
-    cb(str.replace(re, word => `TAG{${map[word]},${word}}`));
-  } else {
-    cb(str);
-  }
+const getInputs = function(path) {
+  return fs.readdirAsync(path);
 };
+const dataPath = './data';
 
-input.forEach(string => {
-  const map = {};
-  AhoCorasick.search(string, trie, (found_word, tag) => {
-    map[found_word] = tag;
+getInputs(`${dataPath}/inputs`)
+  .then(inputFileArray => {
+    inputFileArray.forEach(inputFile => {
+      createTaggedFile(
+        trie,
+        `${dataPath}/inputs/${inputFile}`,
+        `${dataPath}/outputs/tagged-${inputFile}`
+      );
+    });
+  })
+  .catch(err => {
+    throw err;
   });
-  replaceAll(string, map);
-});

@@ -14,6 +14,6 @@ https://www.npmjs.com/package/aho-corasick.js
 
 Afterwards, I implemented a very basic solution to the given challenge that fulfills the requirements. I used Node.js for my environment and stored the tags and input in separate files, choosing to simply output to console for the initial implementation.
 
-<!-- ### Very large datasets implementation
+### Very large datasets implementation
 
-Since the original problem suggested that the input would take the form of a "very large body of documents", I thought it might be large enough that I couldn't hold all of it in memory at the same time. Thus, I implemented a solution that creates an input stream from a given input file and outputs a stream to an output file. -->
+Since the original problem suggested that the input would take the form of a "very large body of documents", I thought it might be large enough that I couldn't hold all of it in memory at the same time. Thus, I implemented a solution that creates an input stream from a given input file and outputs a stream to an output file.

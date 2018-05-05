@@ -8,6 +8,8 @@
   "license": "ISC",
   "dependencies": {
     "aho-corasick.js": "0.0.1",
-    "fs": "0.0.1-security"
+    "bluebird": "^3.5.1",
+    "fs": "0.0.1-security",
+    "readline": "^1.3.0"
   }
 }
