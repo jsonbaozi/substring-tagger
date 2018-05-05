@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "substring tagger on large document stores",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
   "author": "jsonbao",
   "license": "ISC",
   "dependencies": {
@@ -11,5 +14,8 @@
     "bluebird": "^3.5.1",
     "fs": "0.0.1-security",
     "readline": "^1.3.0"
+  },
+  "devDependencies": {
+    "jest": "^22.4.3"
   }
 }
